@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="fedback.css" />
+  </head>
+  <body>
+    <div class="container-1">
+      <form onsubmit="SendEmail(); reset(); return false;">
+        <h3>GET IN TOUCH</h3>
+        <input type="text" id="name" placeholder="Your Name" />
+        <input type="email" id="email" placeholder="Email id" />
+        <input type="text" id="phone" placeholder="phone no" />
+        <textarea
+          id="message"
+          rows="4"
+          placeholder="How Can We help you"
+        ></textarea>
+        <button type="submit" id="btn">send</button>
+      </form>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js">
+
+      function SendEmail() {
+        Email.send({
+          Host: "smtp.gmail.com",
+          Username: "amanit111@gmail.com",  // Your Gmail email address
+          Password: "tazolyqwwrpzftao",  // Your Gmail email password or an app-specific password
+          To: "amanit111@gmail.com",      // Recipient's email address
+          From: document.getElementById("email").value,
+          Subject: "New Contact From Enquiry",
+          Body:
+            "Name: " + document.getElementById("name").value +
+            "<br>Email: " + document.getElementById("email").value +
+            "<br>Phone no: " + document.getElementById("phone").value +
+            "<br>Message: " + document.getElementById("message").value
+        })
+          .then(function (message) {
+            alert("Message sent successfully");
+          })
+          .catch(function (error) {
+            console.error(error.message);
+          });
+      }
+    </script>
+    <!-- <script src="fedback.js"></script> -->
+  </body>
+</html>
